@@ -4,13 +4,16 @@ Onlinegdb Name: Tam T
 Due: 04/17/2024
 Name: Tam Truong
 ID: 1002067897
+
+Movie name: Deadpool
+Source: https://www.scriptslug.com/script/deadpool-2016
 '''
 
 import string
 
 # Function to clean words
-#   Note: string.punctuation is a list of sets of all punctutations: 
-#   !"#$%&'()*+, -./:;<=>?@[\]^_`{|}~
+# Note: string.punctuation is a list of sets of all punctutations: 
+# !"#$%&'()*+, -./:;<=>?@[\]^_`{|}~ 
 def clean_word(word):
     word = word.lower().strip(string.punctuation)
     return word
@@ -23,7 +26,7 @@ with open("myMarvelScript.txt", 'r', encoding='utf-8') as file:
 words = []
 counts = []
 
-# Process script to count words
+# Count words
 total_words = 0
 for line in script_lines:
     words_in_line = line.split()
@@ -35,8 +38,8 @@ for line in script_lines:
                 words.append(cleaned_word)
                 counts.append(1)
             else:
-                idx = words.index(cleaned_word)
-                counts[idx] += 1
+                index = words.index(cleaned_word)
+                counts[index] += 1
 
 unique_words_count = len(words)
 
@@ -50,20 +53,19 @@ with open("output.txt", 'w', encoding='utf-8') as output_file:
     output_file.write(f"Total number of words in the script: {total_words}\n")
     output_file.write(f"Total number of unique words in the script: {unique_words_count}\n\n")
     
-    # Sort by most frequent words
-    output_file.write("Most frequent words:\n")
+    # Sort by most frequent 
+    output_file.write("Most frequent words:".ljust(50))
     sorted_by_frequency = sorted(zip(words, counts), key=lambda pair: pair[1], reverse=True)
-    for word, count in sorted_by_frequency:
-        output_file.write(f"{word}: {count}\n")
-    output_file.write("\n")
-    
-    # Sort alphabetically
-    output_file.write("Words in alphabetical order:\n")
+
+    #Sort by alphabetical order
     sorted_alphabetically = sorted(zip(words, counts), key=lambda pair: pair[0], reverse=False)
-    for word, count in sorted_alphabetically:
-        output_file.write(f"{word}: {count}\n")
-    output_file.write("\n")
+    output_file.write("Words in alphabetical order:\n")
     
+    # Formatting output in 2 different columns
+    for (word_alphetically_sorted, count_alphetically_sorted), (word_sorted_by_frequency, count_sorted_by_frequency) in zip(sorted_by_frequency, sorted_alphabetically):
+        output_file.write(f"{word_alphetically_sorted}: {count_alphetically_sorted}".ljust(50))
+        output_file.write(f"{word_sorted_by_frequency}: {count_sorted_by_frequency}\n")
+
     '''
     To do:
     Focus word lists
