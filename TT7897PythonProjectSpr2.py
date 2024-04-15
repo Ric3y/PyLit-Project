@@ -13,9 +13,9 @@ import string
 
 # Function to clean words
 # Note: string.punctuation is a list of sets of all punctutations: 
-# !"#$%&'()*+, -./:;<=>?@[\]^_`{|}~ 
+# !"#$%&'()*+, -./:;<=>?@[\]^_`{|}~‘ 
 def clean_word(word):
-    word = word.lower().strip(string.punctuation)
+    word = word.lower().strip(string.punctuation + "‘’")
     return word
 
 # Read script from input file and get total lines
@@ -62,9 +62,10 @@ with open("output.txt", 'w', encoding='utf-8') as output_file:
     output_file.write("Words in alphabetical order:\n")
     
     # Formatting output in 2 different columns
-    for (word_alphetically_sorted, count_alphetically_sorted), (word_sorted_by_frequency, count_sorted_by_frequency) in zip(sorted_by_frequency, sorted_alphabetically):
-        output_file.write(f"{word_alphetically_sorted}: {count_alphetically_sorted}".ljust(50))
-        output_file.write(f"{word_sorted_by_frequency}: {count_sorted_by_frequency}\n")
+    for (word_sorted_by_frequency, count_sorted_by_frequency) , (word_alphetically_sorted, count_sorted_alphabetically) in zip(sorted_by_frequency, sorted_alphabetically):
+        output_file.write(f"{word_sorted_by_frequency} : {count_sorted_by_frequency} time(s)".ljust(50))
+        output_file.write(f"{word_alphetically_sorted}\n")
+        
 
     '''
     To do:
