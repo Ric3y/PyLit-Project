@@ -70,5 +70,7 @@ with open("output.txt", 'w', encoding='utf-8') as output_file:
     '''
     To do:
     Focus word lists
-    focus_lists = []  
+    focus_list1 = ["life", "face", "hero"]  
+    focus_list2 = []  
+    focus_list3 = []  
     '''
