@@ -11,12 +11,18 @@ Source: https://www.scriptslug.com/script/deadpool-2016
 
 import string
 
-# Function to clean words
+# Function to clean words 
 # Note: string.punctuation is a list of sets of all punctutations: 
 # !"#$%&'()*+, -./:;<=>?@[\]^_`{|}~‘ 
+# added in ‘’ and “” manually in the list 
 def clean_word(word):
-    word = word.lower().strip(string.punctuation + "‘’")
+    word = word.lower().strip(string.punctuation + "‘’“”") 
     return word
+
+# Function to count occurrences of focus words
+def count_focus_words(focus_list, words, counts):
+    total_count = sum(counts[words.index(word)] for word in focus_list if word in words)
+    return total_count
 
 # Read script from input file and get total lines
 with open("myMarvelScript.txt", 'r', encoding='utf-8') as file:
@@ -62,15 +68,24 @@ with open("output.txt", 'w', encoding='utf-8') as output_file:
     output_file.write("Words in alphabetical order:\n")
     
     # Formatting output in 2 different columns
-    for (word_sorted_by_frequency, count_sorted_by_frequency) , (word_alphetically_sorted, count_sorted_alphabetically) in zip(sorted_by_frequency, sorted_alphabetically):
+    for (word_sorted_by_frequency, count_sorted_by_frequency) , (word_alphetically_sorted, count_sorted_by_alphabetically) in zip(sorted_by_frequency, sorted_alphabetically):
         output_file.write(f"{word_sorted_by_frequency} : {count_sorted_by_frequency} time(s)".ljust(50))
         output_file.write(f"{word_alphetically_sorted}\n")
-        
+    
+    # Focus word lists
+    focus_lists = [
+    #List #1
+        ["life", "face", "hero", "monster"],
+    #List #2
+    #    ["alien", "space", "galaxy", "planet"],
+    #List  #3
+    #    ["friend", "team", "bond", "support"]
+    ]
 
-    '''
-    To do:
-    Focus word lists
-    focus_list1 = ["life", "face", "hero"]  
-    focus_list2 = []  
-    focus_list3 = []  
-    '''
+    output_file.write("\n")
+
+    # Count focus words
+    for idx, focus_list in enumerate(focus_lists, start=1):
+        total_focus_words = count_focus_words(focus_list, words, counts)
+        output_file.write(f"Focus List {idx}: {focus_list}\n")
+        output_file.write(f"Total count of focus words: {total_focus_words} times\n\n")
