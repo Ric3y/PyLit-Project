@@ -97,11 +97,11 @@ with open("output.txt", 'w', encoding='utf-8') as output_file:
         output_file.write(f"Focus List {idx}: {focus_list}\n")
         output_file.write(f"Total count of focus words: {total_focus_words} times\n\n")
 
-        output_file.write("Words sorted alphabetically and their frequency:\n")
+        output_file.write("Words sorted alphabetically (and their frequency):\n")
         # Sort the focus words and their corresponding frequencies alphabetically. 
         # Pairs each focus word from focus_list with its frequency retrieved from the counts list using list comprehension. 
         # The key parameter specifies that sorting should be based on the first element of each pair (the focus word)
         sorted_focus_words = sorted(zip(focus_list, [counts[words.index(word)] for word in focus_list]), key=lambda pair: pair[0], reverse=False)
         for word, count in sorted_focus_words:
-            output_file.write(f"{word}: {count}\n")
+            output_file.write(f"{word}: {count} time(s)\n")
         output_file.write("\n")
