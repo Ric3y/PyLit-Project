@@ -80,11 +80,12 @@ with open("output.txt", 'w', encoding='utf-8') as output_file:
     # Focus word lists
     focus_lists = [
     #List #1
-        ["life", "face", "hero", "monster", "mask"],
+        ["life", "face", "hero", "monster", "mask", "army", "scars", "handsome"] ,
     #List #2
         ["christmas", "vanessa", "love", "dopinder", "gita"],
     #List  #3
-        ["francis", "torture", "cure", "kill"]
+    # cant use ajax because data bias bc name appears multiple time
+        ["francis", "torture", "cure", "kill", "fix"]
     ]
 
     output_file.write("\n")
