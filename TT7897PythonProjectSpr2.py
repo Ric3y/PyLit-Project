@@ -16,7 +16,7 @@ import string
 # and removes any leading or trailing punctuation characters, including single and double quotation marks.
 # Note string.punctuation is a list of sets of all punctutations: !"#$%&'()*+, -./:;<=>?@[\]^_`{|}~‘ !"#$%&'()*+, -./:;<=>?@[\]^_`{|}~‘ 
 def clean_word(word):
-    word = word.lower().strip(string.punctuation + "‘’“”") 
+    word = word.strip(string.punctuation + "‘’“”") 
     return word
 
 # Function to count occurrences of focus words
@@ -80,12 +80,11 @@ with open("output.txt", 'w', encoding='utf-8') as output_file:
     # Focus word lists
     focus_lists = [
     #List #1
-        ["life", "face", "hero", "monster", "mask", "army", "scars", "handsome"] ,
+        ["life", "face", "hero", "monster", "mask", "army", "SCARS", "handsome", "cure"] ,
     #List #2
-        ["christmas", "vanessa", "love", "dopinder", "gita"],
+        ["Christmas", "Vanessa", "love"],
     #List  #3
-    # cant use ajax because data bias bc name appears multiple time
-        ["francis", "torture", "cure", "kill", "fix"]
+        ["Francis", "Ajax", "torture", "kill", "fix"]
     ]
 
     output_file.write("\n")
